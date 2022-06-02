@@ -34,12 +34,12 @@ public class CabinService implements ICabinService {
     }
 
     @Override
-    public CabinEntity getById(UUID id) {
+    public CabinDto getById(UUID id) {
         Optional<CabinEntity> cabin = Optional.ofNullable(cabinRepository.findById(id)).orElseThrow();
 
         if(cabin == null) throw new RecordNotFoundException(id.toString());
 
-        return cabin.get();
+        return cabin.get().toDTO();
     }
 
     @Override
